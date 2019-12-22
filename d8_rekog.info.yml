@@ -1,0 +1,11 @@
+name: Drupal 8 Rekognition
+description: Used to summarize images uploaded via Media core
+package: Custom
+
+type: module
+core: 8.x
+
+dependencies:
+  - drupal:media
+
+configure: d8_rekog.settings
