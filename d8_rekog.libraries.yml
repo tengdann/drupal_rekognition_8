@@ -1,0 +1,8 @@
+d8_rekog:
+  version: 0.x
+  js:
+    js/d8_rekog.js: {}
+    https://sdk.amazonaws.com/js/aws-sdk-2.536.0.min.js: {type: external, minified: true}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings

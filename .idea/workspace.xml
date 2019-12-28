@@ -21,6 +21,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\dteng\Desktop\drupal_rekognition_8\js" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -46,6 +51,7 @@
       <workItem from="1577042937793" duration="341000" />
       <workItem from="1577152616119" duration="640000" />
       <workItem from="1577413739081" duration="2432000" />
+      <workItem from="1577546923685" duration="4732000" />
     </task>
     <servers />
   </component>

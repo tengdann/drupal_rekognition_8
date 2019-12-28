@@ -1,0 +1,9 @@
+<?php
+
+function d8_rekog_page_attachment(array &$page) {
+    if (!Drupal::currentUser()->hasPermission('Create new content')) {
+        return;
+    }
+
+    $page['#attached']['library'][] = 'd8_rekog/js/d8_rekog.js';
+}
