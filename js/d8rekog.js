@@ -1,33 +1,42 @@
 // jQuery to find form submit, and runs image processing pipeline.
-(function ($) {
-    $(function () {
-        jQueryObject = $(".image-widget-data");
-        console.log(jQueryObject)
-        // jQueryObject.ajaxSuccess(function(event, XMLHttpRequest, ajaxOptions) {
-        //     ProcessImage();
-        // });
-    });
-})(jQuery);
+// (function ($) {
+//     $(function () {
+//         jQueryObject = $(".image-widget-data");
+//         jQueryObject.ajaxStop(function(event, XMLHttpRequest, ajaxOptions) {
+//             console.log('success');
+//             // ProcessImage();
+//         });
+//     });
+// })(jQuery);
+
+(function ($, Drupal) {
+    Drupal.behaviors.custom = {
+        attach: function (context, settings) {
+            $(document).ajaxComplete(function (event, xhr, settings) {
+                // console.log(settings.data);
+                ProcessImage();
+            });
+        }
+    }
+})(jQuery, Drupal);
 
 // Needed for global variable declaration
 var region;
 var id;
 
 // TODO: Update to Drupal 8 drupalSettings
-// Access Drupal variables set in config
-// Adapted from https://stackoverflow.com/questions/14234598/drupal-7-global-javascript-variables
-(function ($) {
-    drupalSettings.d8rekog = {
-        attach: function (context, settings) {
-            region = drupalSettings.d8rekog.aws_region;
-            id = drupalSettings.d8rekog.ident_pool_id;
+(function ($, Drupal, drupalSettings) {
+    Drupal.behaviors.d8rekog = {
+        attach: function (context) {
+            region = drupalSettings['d8_rekog']['aws_region'];
+            id = drupalSettings['d8_rekog']['ident_pool_id'];
         }
     };
-})(jQuery);
+})(jQuery, Drupal, drupalSettings);
 
 // Calls DetectLabels API and provides formatted descriptor of image
 function DetectLabels(imageData) {
-    // AWS.region = region;
+    AWS.region = region;
     var rekognition = new AWS.Rekognition();
     var params = {
         Image: {
@@ -61,8 +70,7 @@ function ProcessImage() {
     AnonLog();
 
     // Find the file_url from however Drupal stores it
-    var file_url =  jQuery('span.file file--mime-image-jpeg file--image a').attr("href");
-    console.log(file_url)
+    var file_url =  jQuery('.image-widget-data').children('span').children('a').attr('href');
 
     // Extract data from file_url
     // Function adapted from https://stackoverflow.com/a/20285053
@@ -130,7 +138,7 @@ function AnonLog() {
     AWS.config.credentials.get(function () {
         // Credentials will be available when this function is called
         var accessKeyId = AWS.config.credentials.accessKeyId;
-        var secretAcessKey = AWS.config.credentials.secretAccessKey;
+        var secretAccessKey = AWS.config.credentials.secretAccessKey;
         var sessionToken = AWS.config.credentials.sessionToken;
     });
 }

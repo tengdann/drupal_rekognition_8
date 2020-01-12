@@ -8,7 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Configure the admin settings for this module
  */
-class D8RekogAdminForm extends ConfigFormBase {
+class D8RekogForm extends ConfigFormBase {
     /**
      * Config settings
      *
@@ -62,9 +62,9 @@ class D8RekogAdminForm extends ConfigFormBase {
     /**
      * {@inheritdoc}
      */
-    public function validateForm(array &$form, FormStateInterface $form_state) {
-
-    }
+//    public function validateForm(array &$form, FormStateInterface $form_state) {
+//
+//    }
 
     /**
      * {@inheritdoc}

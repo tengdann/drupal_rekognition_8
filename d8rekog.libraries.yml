@@ -1,10 +1,11 @@
 rekog-process:
-  version: 1.x
+  version: 1.0
   header: true
   js:
     js/d8rekog.js: {}
   dependencies:
     - core/jquery
+    - core/drupal
     - core/drupalSettings
 
 aws-sdk:

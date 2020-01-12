@@ -5,14 +5,19 @@ function d8rekog_page_attachments(array &$page) {
         return;
     }
 
-    $config = config('d8rekog.settings');
-
-    $js_settings = [
-        'aws_region' => $config->get('d8rekog.aws_region'),
-        'ident_pool_id' => $config->get('d8rekog.ident_pool_id')
-    ];
+    // Only attach if node is media/add/image
+    $path = $current_path = \Drupal::service('path.current')->getPath();
+    if ($path != '/media/add/image') {
+        return;
+    }
 
     $page['#attached']['library'][] = 'd8rekog/rekog-process';
-    $page['##attached']['library'][] = 'd8rekog/aws-sdk';
-    $page['#attached']['drupalSettings']['d8rekog']['rekogProcess'] = $js_settings;
+    $page['#attached']['library'][] = 'd8rekog/aws-sdk';
+
+    $config = \Drupal::config('d8rekog.settings');
+    $aws_region = $config->get('d8rekog.aws_region');
+    $ident_pool_id = $config->get('d8rekog.ident_pool_id');
+
+    $page['#attached']['drupalSettings']['d8_rekog']['aws_region'] = $aws_region;
+    $page['#attached']['drupalSettings']['d8_rekog']['ident_pool_id'] = $ident_pool_id;
 }
