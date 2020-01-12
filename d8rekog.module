@@ -1,0 +1,9 @@
+<?php
+
+function d8rekog_page_attachments(array &$attachments) {
+//    if (!\Drupal::currentUser()->hasPermission('Create new content')) {
+//        return;
+//    }
+
+    $attachments['#attached']['library'][] = 'd8rekog/d8rekog';
+}

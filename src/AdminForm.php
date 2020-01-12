@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\d8_rekog;
+namespace Drupal\d8rekog;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -14,13 +14,13 @@ class D8RekogAdminForm extends ConfigFormBase {
      *
      * @var string
      */
-    const SETTINGS = 'd8_rekog.settings';
+    const SETTINGS = 'd8rekog.settings';
 
     /**
      * {@inheritdoc}
      */
     public function getFormId() {
-        return 'd8_rekog_admin_settings';
+        return 'd8rekog_admin_settings';
     }
 
     /**

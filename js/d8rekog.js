@@ -1,10 +1,11 @@
 // jQuery to find form submit, and runs image processing pipeline.
 (function ($) {
     $(function () {
-        jQueryObject = $(".form-submit");
-        jQueryObject.ajaxSuccess(function(event, XMLHttpRequest, ajaxOptions) {
-            ProcessImage();
-        });
+        jQueryObject = $(".image-widget-data");
+        console.log(jQueryObject)
+        // jQueryObject.ajaxSuccess(function(event, XMLHttpRequest, ajaxOptions) {
+        //     ProcessImage();
+        // });
     });
 })(jQuery);
 
@@ -12,20 +13,21 @@
 var region;
 var id;
 
+// TODO: Update to Drupal 8 drupalSettings
 // Access Drupal variables set in config
 // Adapted from https://stackoverflow.com/questions/14234598/drupal-7-global-javascript-variables
 (function ($) {
-    Drupal.behaviors.badcamp19 = {
+    drupalSettings.d8rekog = {
         attach: function (context, settings) {
-            region = Drupal.settings.badcamp19.region;
-            id = Drupal.settings.badcamp19.id;
+            region = drupalSettings.d8rekog.aws_region;
+            id = drupalSettings.d8rekog.ident_pool_id;
         }
     };
 })(jQuery);
 
 // Calls DetectLabels API and provides formatted descriptor of image
 function DetectLabels(imageData) {
-    AWS.region = 'us-east-1';
+    // AWS.region = region;
     var rekognition = new AWS.Rekognition();
     var params = {
         Image: {
@@ -47,7 +49,7 @@ function DetectLabels(imageData) {
             // Adds the alt text to appropriate field (for the custom module)
             // Format: "Image may contain: <tag>, <tag>, <tag>, ..., <tag>"
             jQuery(document).ready(function() {
-                jQuery('input[id*="edit-field-alt-text"]').val(alt_text)
+                jQuery('input[id*="edit-field-media-image-0-alt"]').val(alt_text)
             });
         }
     });
@@ -59,7 +61,8 @@ function ProcessImage() {
     AnonLog();
 
     // Find the file_url from however Drupal stores it
-    var file_url =  jQuery('.image-preview img').attr("src");
+    var file_url =  jQuery('span.file file--mime-image-jpeg file--image a').attr("href");
+    console.log(file_url)
 
     // Extract data from file_url
     // Function adapted from https://stackoverflow.com/a/20285053

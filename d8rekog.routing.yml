@@ -1,0 +1,7 @@
+d8rekog.settings:
+  path: 'admin/config/media/drupal_rekognition_8'
+  defaults:
+    _form: '\Drupal\d8rekog\src\Controller\AdminForm\'
+    _title: 'Drupal Rekognitiion 8'
+  requirements:
+    _permission: 'administer site configuration'

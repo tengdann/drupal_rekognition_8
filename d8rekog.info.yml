@@ -8,4 +8,4 @@ core: 8.x
 dependencies:
   - drupal:media
 
-configure: d8_rekog.settings
+configure: d8rekog.settings

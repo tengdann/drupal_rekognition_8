@@ -1,7 +1,0 @@
-d8_rekog.settings:
-  path: 'admin/config/media/drupal_rekognition_8'
-  defaults:
-    _form: 'Drupal/d8_rekog/AdminForm/'
-    _title: 'Drupal Rekognitiion 8'
-  requirements:
-    _permission: 'access administration pages'
