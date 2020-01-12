@@ -1,9 +1,18 @@
 <?php
 
-function d8rekog_page_attachments(array &$attachments) {
-//    if (!\Drupal::currentUser()->hasPermission('Create new content')) {
-//        return;
-//    }
+function d8rekog_page_attachments(array &$page) {
+    if (!\Drupal::currentUser()->hasPermission('Create new content')) {
+        return;
+    }
 
-    $attachments['#attached']['library'][] = 'd8rekog/d8rekog';
+    $config = config('d8rekog.settings');
+
+    $js_settings = [
+        'aws_region' => $config->get('d8rekog.aws_region'),
+        'ident_pool_id' => $config->get('d8rekog.ident_pool_id')
+    ];
+
+    $page['#attached']['library'][] = 'd8rekog/rekog-process';
+    $page['##attached']['library'][] = 'd8rekog/aws-sdk';
+    $page['#attached']['drupalSettings']['d8rekog']['rekogProcess'] = $js_settings;
 }

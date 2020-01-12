@@ -1,8 +1,14 @@
-d8rekog:
+rekog-process:
   version: 1.x
+  header: true
   js:
-    https://sdk.amazonaws.com/js/aws-sdk-2.536.0.min.js: {type: external, minified: true, header: true}
-    js/d8rekog.js: {header: true}
+    js/d8rekog.js: {}
   dependencies:
     - core/jquery
     - core/drupalSettings
+
+aws-sdk:
+  version: 2.536.0
+  header: true
+  js:
+    https://sdk.amazonaws.com/js/aws-sdk-2.536.0.min.js: {type: external, minified: true}
