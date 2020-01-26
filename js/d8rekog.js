@@ -13,7 +13,6 @@
     Drupal.behaviors.custom = {
         attach: function (context, settings) {
             $(document).ajaxComplete(function (event, xhr, settings) {
-                // console.log(settings.data);
                 ProcessImage();
             });
         }
@@ -24,7 +23,6 @@
 var region;
 var id;
 
-// TODO: Update to Drupal 8 drupalSettings
 (function ($, Drupal, drupalSettings) {
     Drupal.behaviors.d8rekog = {
         attach: function (context) {
